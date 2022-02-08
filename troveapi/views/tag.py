@@ -1,11 +1,10 @@
 """View module for handling requests about tag"""
-from rest_framework.viewsets import ViewSet
-from rest_framework.response import Response
-from rest_framework import serializers
-from troveapi.models import Tag
-from rest_framework import serializers, status
-from django.db.models import Count, Q
 from django.contrib.auth.models import User
+from django.db.models import Q
+from rest_framework import serializers, status
+from rest_framework.response import Response
+from rest_framework.viewsets import ViewSet
+from troveapi.models import Tag
 
 
 class TagView(ViewSet):
@@ -52,7 +51,7 @@ class TagView(ViewSet):
         """
         user = User.objects.get(pk=request.auth.user.id)
 
-        serializer = TagSerializer(data=request.data)
+        serializer = CreateTagSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save(user=user)
 
@@ -68,7 +67,7 @@ class TagView(ViewSet):
         try:
             tag = Tag.objects.get(pk=pk)
 
-            serializer = TagSerializer(tag, data=request.data)
+            serializer = CreateTagSerializer(tag, data=request.data)
             serializer.is_valid(raise_exception=True)
             serializer.save()
 
@@ -95,5 +94,12 @@ class TagSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = Tag
+        fields = ('id', 'tag', 'user')
+
+class CreateTagSerializer(serializers.ModelSerializer):
+    """JSON serializer for tag types
+    """
+    class Meta:
+        model = Tag
         fields = ('id', 'tag')
-        
+

@@ -1,57 +1,57 @@
-"""View module for handling requests about games"""
+"""View module for handling requests about books"""
 from django.contrib.auth.models import User
 from django.db.models import Q
 from rest_framework import serializers, status
 from rest_framework.response import Response
 from rest_framework.viewsets import ViewSet
-from troveapi.models import Game
+from troveapi.models import Book
 
 
-class GameView(ViewSet):
-    """Trove game view"""
+class BookView(ViewSet):
+    """Trove book view"""
 
     def retrieve(self, request, pk):
-        """Handle GET requests for single game
+        """Handle GET requests for single book
 
         Returns:
-            Response -- JSON serialized game
+            Response -- JSON serialized book
         """
         try:
-            game = Game.objects.get(pk=pk)
-            serializer = GameSerializer(game)
+            book = Book.objects.get(pk=pk)
+            serializer = BookSerializer(book)
             return Response(serializer.data)
-        except Game.DoesNotExist as ex:
+        except Book.DoesNotExist as ex:
             return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
 
     def list(self, request):
-        """Handle GET requests to get all games
+        """Handle GET requests to get all books
 
         Returns:
-            Response -- JSON serialized list of games
+            Response -- JSON serialized list of books
         """
-        games = Game.objects.filter(user=request.auth.user)
+        books = Book.objects.filter(user=request.auth.user)
 
         search_text = self.request.query_params.get('q', None)
         current_text = self.request.query_params.get('current', None)
 
         if search_text and current_text:
-            games = Game.objects.filter(
+            books = Book.objects.filter(
                 Q(name__contains=search_text) &
                 Q(current=current_text) &
                 Q(user=request.auth.user)
             )
         elif search_text:
-            games = Game.objects.filter(
+            books = Book.objects.filter(
                 Q(name__contains=search_text) &
                 Q(user=request.auth.user)
             )
         elif current_text:
-            games = Game.objects.filter(
+            books = Book.objects.filter(
                 Q(current=current_text) &
                 Q(user=request.auth.user)
             )
 
-        serializer = GameSerializer(games, many=True)
+        serializer = BookSerializer(books, many=True)
 
         return Response(serializer.data)
 
@@ -59,69 +59,67 @@ class GameView(ViewSet):
         """Handle POST operations
 
         Returns:
-            Response -- JSON serialized game instance
+            Response -- JSON serialized book instance
         """
 
         user = User.objects.get(pk=request.auth.user.id)
 
-        serializer = CreateGameSerializer(data=request.data)
+        serializer = CreateBookSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        game = serializer.save(user=user)
+        book = serializer.save(user=user)
 
-        game.tags.set(request.data["tags"])
-        game.platforms.set(request.data["platforms"])
+        book.tags.set(request.data["tags"])
 
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     def update(self, request, pk):
-        """Handle PUT requests for a game
+        """Handle PUT requests for a book
 
         Returns:
             Response -- Empty body with 204 status code
         """
 
         try:
-            game = Game.objects.get(pk=pk)
+            book = Book.objects.get(pk=pk)
 
-            serializer = CreateGameSerializer(game, data=request.data)
+            serializer = CreateBookSerializer(book, data=request.data)
             serializer.is_valid(raise_exception=True)
-            updated_game = serializer.save()
+            updated_book = serializer.save()
 
-            updated_game.tags.set(request.data["tags"])
-            updated_game.platforms.set(request.data["platforms"])
+            updated_book.tags.set(request.data["tags"])
 
             return Response(None, status=status.HTTP_204_NO_CONTENT)
-        except Game.DoesNotExist as ex:
+        except Book.DoesNotExist as ex:
             return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
 
     def destroy(self, request, pk):
-        """Handle DELETE requests for a game
+        """Handle DELETE requests for a book
 
         Returns:
             Response -- Empty body with 204 status code
         """
         try:
-            game = Game.objects.get(pk=pk)
-            game.delete()
+            book = Book.objects.get(pk=pk)
+            book.delete()
             return Response(None, status=status.HTTP_204_NO_CONTENT)
-        except Game.DoesNotExist as ex:
+        except Book.DoesNotExist as ex:
             return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
 
 
-class GameSerializer(serializers.ModelSerializer):
-    """JSON serializer for game types
+class BookSerializer(serializers.ModelSerializer):
+    """JSON serializer for book types
     """
     class Meta:
-        model = Game
+        model = Book
         depth = 1
-        fields = ('id', 'multiplayer_capable', 'user',
-                  'name', 'current', 'platforms', 'tags')
+        fields = ('id', 'user',
+                  'name', 'current', 'author', 'tags')
 
 
-class CreateGameSerializer(serializers.ModelSerializer):
-    """JSON serializer for game types
+class CreateBookSerializer(serializers.ModelSerializer):
+    """JSON serializer for book types
     """
     class Meta:
-        model = Game
-        fields = ('id', 'multiplayer_capable', 'name',
-                  'current', 'platforms', 'tags')
+        model = Book
+        fields = ('id', 'name',
+                  'current', 'author', 'tags')
