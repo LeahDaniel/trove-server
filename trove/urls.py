@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path
 from rest_framework import routers
 from troveapi.views import (BookView, GameView, PlatformView, TagView, login_user, StreamingServiceView,
-                            register_user)
+                            register_user, AuthorView)
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'games', GameView, 'game')
@@ -26,6 +26,7 @@ router.register(r'platforms', PlatformView, 'platform')
 router.register(r'platforms', PlatformView, 'platform')
 router.register(r'tags', TagView, 'tag')
 router.register(r'books', BookView, 'book')
+router.register(r'authors', AuthorView, 'author')
 router.register(r'streaming_services', StreamingServiceView, 'streaming service')
 
 
