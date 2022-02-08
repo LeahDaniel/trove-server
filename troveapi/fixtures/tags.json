@@ -1,0 +1,482 @@
+[
+    {
+        "model": "troveapi.tag",
+        "pk": 2,
+        "fields": {
+            "user": 1,
+            "tag": "Adventure"
+        }
+    },
+    {
+        "model": "troveapi.tag",
+        "pk": 3,
+        "fields": {
+            "user": 1,
+            "tag": "Comedy"
+        }
+    },
+    {
+        "model": "troveapi.tag",
+        "pk": 5,
+        "fields": {
+            "user": 1,
+            "tag": "Drama"
+        }
+    },
+    {
+        "model": "troveapi.tag",
+        "pk": 6,
+        "fields": {
+            "user": 1,
+            "tag": "Fantasy"
+        }
+    },
+    {
+        "model": "troveapi.tag",
+        "pk": 7,
+        "fields": {
+            "user": 1,
+            "tag": "Mystery"
+        }
+    },
+    {
+        "model": "troveapi.tag",
+        "pk": 8,
+        "fields": {
+            "user": 1,
+            "tag": "Historical"
+        }
+    },
+    {
+        "model": "troveapi.tag",
+        "pk": 9,
+        "fields": {
+            "user": 1,
+            "tag": "Horror"
+        }
+    },
+    {
+        "model": "troveapi.tag",
+        "pk": 10,
+        "fields": {
+            "user": 1,
+            "tag": "Romance"
+        }
+    },
+    {
+        "model": "troveapi.tag",
+        "pk": 11,
+        "fields": {
+            "user": 1,
+            "tag": "Science Fiction"
+        }
+    },
+    {
+        "model": "troveapi.tag",
+        "pk": 12,
+        "fields": {
+            "user": 1,
+            "tag": "Thriller"
+        }
+    },
+    {
+        "model": "troveapi.tag",
+        "pk": 16,
+        "fields": {
+            "user": 1,
+            "tag": "Stealth"
+        }
+    },
+    {
+        "model": "troveapi.tag",
+        "pk": 17,
+        "fields": {
+            "user": 1,
+            "tag": "Survival"
+        }
+    },
+    {
+        "model": "troveapi.tag",
+        "pk": 18,
+        "fields": {
+            "user": 1,
+            "tag": "Rhythm"
+        }
+    },
+    {
+        "model": "troveapi.tag",
+        "pk": 20,
+        "fields": {
+            "user": 1,
+            "tag": "RPG"
+        }
+    },
+    {
+        "model": "troveapi.tag",
+        "pk": 22,
+        "fields": {
+            "user": 1,
+            "tag": "Life Sim"
+        }
+    },
+    {
+        "model": "troveapi.tag",
+        "pk": 23,
+        "fields": {
+            "user": 1,
+            "tag": "Construction and Management Sim"
+        }
+    },
+    {
+        "model": "troveapi.tag",
+        "pk": 25,
+        "fields": {
+            "user": 1,
+            "tag": "Strategy"
+        }
+    },
+    {
+        "model": "troveapi.tag",
+        "pk": 27,
+        "fields": {
+            "user": 1,
+            "tag": "Turn-based Strategy"
+        }
+    },
+    {
+        "model": "troveapi.tag",
+        "pk": 31,
+        "fields": {
+            "user": 1,
+            "tag": "Casual"
+        }
+    },
+    {
+        "model": "troveapi.tag",
+        "pk": 32,
+        "fields": {
+            "user": 1,
+            "tag": "Board/Card Game"
+        }
+    },
+    {
+        "model": "troveapi.tag",
+        "pk": 34,
+        "fields": {
+            "user": 1,
+            "tag": "Idle"
+        }
+    },
+    {
+        "model": "troveapi.tag",
+        "pk": 35,
+        "fields": {
+            "user": 1,
+            "tag": "Puzzle"
+        }
+    },
+    {
+        "model": "troveapi.tag",
+        "pk": 36,
+        "fields": {
+            "user": 1,
+            "tag": "Logic"
+        }
+    },
+    {
+        "model": "troveapi.tag",
+        "pk": 38,
+        "fields": {
+            "user": 1,
+            "tag": "Trivia"
+        }
+    },
+    {
+        "model": "troveapi.tag",
+        "pk": 39,
+        "fields": {
+            "user": 1,
+            "tag": "Educational"
+        }
+    },
+    {
+        "model": "troveapi.tag",
+        "pk": 40,
+        "fields": {
+            "user": 1,
+            "tag": "Sandbox"
+        }
+    },
+    {
+        "model": "troveapi.tag",
+        "pk": 41,
+        "fields": {
+            "user": 1,
+            "tag": "Open world"
+        }
+    },
+    {
+        "model": "troveapi.tag",
+        "pk": 42,
+        "fields": {
+            "user": 1,
+            "tag": "Creative"
+        }
+    },
+    {
+        "model": "troveapi.tag",
+        "pk": 43,
+        "fields": {
+            "user": 2,
+            "tag": "Adventure"
+        }
+    },
+    {
+        "model": "troveapi.tag",
+        "pk": 44,
+        "fields": {
+            "user": 2,
+            "tag": "Comedy"
+        }
+    },
+    {
+        "model": "troveapi.tag",
+        "pk": 45,
+        "fields": {
+            "user": 2,
+            "tag": "Action"
+        }
+    },
+    {
+        "model": "troveapi.tag",
+        "pk": 46,
+        "fields": {
+            "user": 2,
+            "tag": "Fantasy"
+        }
+    },
+    {
+        "model": "troveapi.tag",
+        "pk": 47,
+        "fields": {
+            "user": 2,
+            "tag": "Drama"
+        }
+    },
+    {
+        "model": "troveapi.tag",
+        "pk": 48,
+        "fields": {
+            "user": 2,
+            "tag": "Mystery"
+        }
+    },
+    {
+        "model": "troveapi.tag",
+        "pk": 49,
+        "fields": {
+            "user": 2,
+            "tag": "Historical"
+        }
+    },
+    {
+        "model": "troveapi.tag",
+        "pk": 50,
+        "fields": {
+            "user": 2,
+            "tag": "Horror"
+        }
+    },
+    {
+        "model": "troveapi.tag",
+        "pk": 51,
+        "fields": {
+            "user": 2,
+            "tag": "Romance"
+        }
+    },
+    {
+        "model": "troveapi.tag",
+        "pk": 52,
+        "fields": {
+            "user": 2,
+            "tag": "Science Fiction"
+        }
+    },
+    {
+        "model": "troveapi.tag",
+        "pk": 53,
+        "fields": {
+            "user": 2,
+            "tag": "Thriller"
+        }
+    },
+    {
+        "model": "troveapi.tag",
+        "pk": 54,
+        "fields": {
+            "user": 2,
+            "tag": "Western"
+        }
+    },
+    {
+        "model": "troveapi.tag",
+        "pk": 56,
+        "fields": {
+            "user": 2,
+            "tag": "Shooter"
+        }
+    },
+    {
+        "model": "troveapi.tag",
+        "pk": 57,
+        "fields": {
+            "user": 2,
+            "tag": "Survival"
+        }
+    },
+    {
+        "model": "troveapi.tag",
+        "pk": 58,
+        "fields": {
+            "user": 2,
+            "tag": "Battle Royale"
+        }
+    },
+    {
+        "model": "troveapi.tag",
+        "pk": 59,
+        "fields": {
+            "user": 2,
+            "tag": "RPG"
+        }
+    },
+    {
+        "model": "troveapi.tag",
+        "pk": 60,
+        "fields": {
+            "user": 2,
+            "tag": "Simulator"
+        }
+    },
+    {
+        "model": "troveapi.tag",
+        "pk": 61,
+        "fields": {
+            "user": 2,
+            "tag": "Strategy"
+        }
+    },
+    {
+        "model": "troveapi.tag",
+        "pk": 62,
+        "fields": {
+            "user": 2,
+            "tag": "Esports"
+        }
+    },
+    {
+        "model": "troveapi.tag",
+        "pk": 63,
+        "fields": {
+            "user": 2,
+            "tag": "Casual"
+        }
+    },
+    {
+        "model": "troveapi.tag",
+        "pk": 64,
+        "fields": {
+            "user": 2,
+            "tag": "Educational"
+        }
+    },
+    {
+        "model": "troveapi.tag",
+        "pk": 66,
+        "fields": {
+            "user": 2,
+            "tag": "Open world"
+        }
+    },
+    {
+        "model": "troveapi.tag",
+        "pk": 71,
+        "fields": {
+            "user": 2,
+            "tag": "Poetry"
+        }
+    },
+    {
+        "model": "troveapi.tag",
+        "pk": 72,
+        "fields": {
+            "user": 2,
+            "tag": "Reality TV"
+        }
+    },
+    {
+        "model": "troveapi.tag",
+        "pk": 74,
+        "fields": {
+            "user": 2,
+            "tag": "Dungeon Crawler"
+        }
+    },
+    {
+        "model": "troveapi.tag",
+        "pk": 75,
+        "fields": {
+            "user": 2,
+            "tag": "Turn-based"
+        }
+    },
+    {
+        "model": "troveapi.tag",
+        "pk": 76,
+        "fields": {
+            "user": 2,
+            "tag": "Feel-good"
+        }
+    },
+    {
+        "model": "troveapi.tag",
+        "pk": 77,
+        "fields": {
+            "user": 2,
+            "tag": "Makeover"
+        }
+    },
+    {
+        "model": "troveapi.tag",
+        "pk": 78,
+        "fields": {
+            "user": 2,
+            "tag": "Sitcom"
+        }
+    },
+    {
+        "model": "troveapi.tag",
+        "pk": 79,
+        "fields": {
+            "user": 2,
+            "tag": "Cringe Comedy"
+        }
+    },
+    {
+        "model": "troveapi.tag",
+        "pk": 80,
+        "fields": {
+            "user": 2,
+            "tag": "Coming-of-age"
+        }
+    },
+    {
+        "model": "troveapi.tag",
+        "pk": 81,
+        "fields": {
+            "user": 2,
+            "tag": "Rhythm"
+        }
+    }
+]

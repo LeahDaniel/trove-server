@@ -1,6 +1,10 @@
-from tkinter import CASCADE
 from django.db import models
-from ..media_parent import Media
+from django.contrib.auth.models import User
 
-class Show(Media):
+class Show(models.Model):
     streaming_service= models.ForeignKey("StreamingService", on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=50)
+    current = models.BooleanField()
+    tags = models.ManyToManyField(
+        "Tag", through="TaggedShow", related_name="showTags")

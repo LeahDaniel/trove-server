@@ -7,11 +7,8 @@ from .game.game_platform import GamePlatform
 from .game.game_recommendation import GameRecommendation
 from .game.platform import Platform
 from .game.tagged_game import TaggedGame
-from .media_parent import Media
-from .recommendation_parent import Recommendation
 from .show.show import Show
 from .show.show_recommendation import ShowRecommendation
 from .show.streaming_service import StreamingService
 from .show.tagged_show import TaggedShow
 from .tag import Tag
-from .tagged_media_parent import TaggedMedia

@@ -1,0 +1,202 @@
+[
+    {
+        "model": "troveapi.taggedshow",
+        "pk": 7,
+        "fields": {
+            "tag": 46,
+            "show": 5
+        }
+    },
+    {
+        "model": "troveapi.taggedshow",
+        "pk": 8,
+        "fields": {
+            "tag": 52,
+            "show": 5
+        }
+    },
+    {
+        "model": "troveapi.taggedshow",
+        "pk": 9,
+        "fields": {
+            "tag": 45,
+            "show": 5
+        }
+    },
+    {
+        "model": "troveapi.taggedshow",
+        "pk": 19,
+        "fields": {
+            "tag": 72,
+            "show": 3
+        }
+    },
+    {
+        "model": "troveapi.taggedshow",
+        "pk": 20,
+        "fields": {
+            "tag": 51,
+            "show": 3
+        }
+    },
+    {
+        "model": "troveapi.taggedshow",
+        "pk": 22,
+        "fields": {
+            "tag": 72,
+            "show": 8
+        }
+    },
+    {
+        "model": "troveapi.taggedshow",
+        "pk": 23,
+        "fields": {
+            "tag": 76,
+            "show": 8
+        }
+    },
+    {
+        "model": "troveapi.taggedshow",
+        "pk": 24,
+        "fields": {
+            "tag": 77,
+            "show": 8
+        }
+    },
+    {
+        "model": "troveapi.taggedshow",
+        "pk": 25,
+        "fields": {
+            "tag": 44,
+            "show": 9
+        }
+    },
+    {
+        "model": "troveapi.taggedshow",
+        "pk": 26,
+        "fields": {
+            "tag": 78,
+            "show": 9
+        }
+    },
+    {
+        "model": "troveapi.taggedshow",
+        "pk": 27,
+        "fields": {
+            "tag": 44,
+            "show": 6
+        }
+    },
+    {
+        "model": "troveapi.taggedshow",
+        "pk": 28,
+        "fields": {
+            "tag": 79,
+            "show": 6
+        }
+    },
+    {
+        "model": "troveapi.taggedshow",
+        "pk": 29,
+        "fields": {
+            "tag": 78,
+            "show": 6
+        }
+    },
+    {
+        "model": "troveapi.taggedshow",
+        "pk": 30,
+        "fields": {
+            "tag": 44,
+            "show": 2
+        }
+    },
+    {
+        "model": "troveapi.taggedshow",
+        "pk": 31,
+        "fields": {
+            "tag": 48,
+            "show": 2
+        }
+    },
+    {
+        "model": "troveapi.taggedshow",
+        "pk": 32,
+        "fields": {
+            "tag": 47,
+            "show": 2
+        }
+    },
+    {
+        "model": "troveapi.taggedshow",
+        "pk": 33,
+        "fields": {
+            "tag": 46,
+            "show": 1
+        }
+    },
+    {
+        "model": "troveapi.taggedshow",
+        "pk": 34,
+        "fields": {
+            "tag": 43,
+            "show": 1
+        }
+    },
+    {
+        "model": "troveapi.taggedshow",
+        "pk": 35,
+        "fields": {
+            "tag": 45,
+            "show": 1
+        }
+    },
+    {
+        "model": "troveapi.taggedshow",
+        "pk": 36,
+        "fields": {
+            "tag": 51,
+            "show": 1
+        }
+    },
+    {
+        "model": "troveapi.taggedshow",
+        "pk": 37,
+        "fields": {
+            "tag": 47,
+            "show": 1
+        }
+    },
+    {
+        "model": "troveapi.taggedshow",
+        "pk": 38,
+        "fields": {
+            "tag": 50,
+            "show": 10
+        }
+    },
+    {
+        "model": "troveapi.taggedshow",
+        "pk": 39,
+        "fields": {
+            "tag": 53,
+            "show": 10
+        }
+    },
+    {
+        "model": "troveapi.taggedshow",
+        "pk": 40,
+        "fields": {
+            "tag": 48,
+            "show": 10
+        }
+    },
+    {
+        "model": "troveapi.taggedshow",
+        "pk": 41,
+        "fields": {
+            "tag": 47,
+            "show": 10
+        }
+    }
+]

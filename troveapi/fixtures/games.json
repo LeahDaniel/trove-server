@@ -1,0 +1,122 @@
+[
+    {
+        "model": "troveapi.game",
+        "pk": 1,
+        "fields": {
+            "name": "Fallout: New Vegas",
+            "user": 2,
+            "current": true,
+            "multiplayer_capable": false
+        }
+    },
+    {
+        "model": "troveapi.game",
+        "pk": 3,
+        "fields": {
+            "name": "XCOM: Enemy Unknown",
+            "user": 2,
+            "current": false,
+            "multiplayer_capable": false
+        }
+    },
+    {
+        "model": "troveapi.game",
+        "pk": 4,
+        "fields": {
+            "name": "Pokemon Brilliant Diamond",
+            "user": 2,
+            "current": true,
+            "multiplayer_capable": true
+        }
+    },
+    {
+        "model": "troveapi.game",
+        "pk": 5,
+        "fields": {
+            "name": "Divinity: Original Sin 2",
+            "user": 2,
+            "current": false,
+            "multiplayer_capable": true
+        }
+    },
+    {
+        "model": "troveapi.game",
+        "pk": 6,
+        "fields": {
+            "name": "The Witcher 2",
+            "user": 2,
+            "current": false,
+            "multiplayer_capable": false
+        }
+    },
+    {
+        "model": "troveapi.game",
+        "pk": 9,
+        "fields": {
+            "name": "The Witcher 3",
+            "user": 2,
+            "current": true,
+            "multiplayer_capable": false
+        }
+    },
+    {
+        "model": "troveapi.game",
+        "pk": 10,
+        "fields": {
+            "name": "Guitar Hero",
+            "user": 2,
+            "current": true,
+            "multiplayer_capable": true
+        }
+    },
+    {
+        "model": "troveapi.game",
+        "pk": 11,
+        "fields": {
+            "name": "Skyrim",
+            "user": 2,
+            "current": true,
+            "multiplayer_capable": false
+        }
+    },
+    {
+        "model": "troveapi.game",
+        "pk": 12,
+        "fields": {
+            "name": "Animal Crossing",
+            "user": 2,
+            "current": true,
+            "multiplayer_capable": true
+        }
+    },
+    {
+        "model": "troveapi.game",
+        "pk": 13,
+        "fields": {
+            "name": "Stardew Valley",
+            "user": 2,
+            "current": true,
+            "multiplayer_capable": true
+        }
+    },
+    {
+        "model": "troveapi.game",
+        "pk": 14,
+        "fields": {
+            "name": "Five Nights at Freddy's 2",
+            "user": 1,
+            "current": false,
+            "multiplayer_capable": false
+        }
+    },
+    {
+        "model": "troveapi.game",
+        "pk": 15,
+        "fields": {
+            "name": "Civilization VI",
+            "user": 2,
+            "current": false,
+            "multiplayer_capable": true
+        }
+    }
+]

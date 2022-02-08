@@ -1,0 +1,82 @@
+[
+    {
+        "model": "troveapi.show",
+        "pk": 1,
+        "fields": {
+            "name": "The Witcher",
+            "user": 2,
+            "current": true,
+            "streaming_service": 4
+        }
+    },
+    {
+        "model": "troveapi.show",
+        "pk": 2,
+        "fields": {
+            "name": "Psych",
+            "user": 2,
+            "current": true,
+            "streaming_service": 5
+        }
+    },
+    {
+        "model": "troveapi.show",
+        "pk": 3,
+        "fields": {
+            "name": "Love Island",
+            "user": 2,
+            "current": true,
+            "streaming_service": 3
+        }
+    },
+    {
+        "model": "troveapi.show",
+        "pk": 5,
+        "fields": {
+            "name": "Loki",
+            "user": 2,
+            "current": false,
+            "streaming_service": 1
+        }
+    },
+    {
+        "model": "troveapi.show",
+        "pk": 6,
+        "fields": {
+            "name": "IT Crowd",
+            "user": 2,
+            "current": true,
+            "streaming_service": 4
+        }
+    },
+    {
+        "model": "troveapi.show",
+        "pk": 8,
+        "fields": {
+            "name": "Queer Eye",
+            "user": 2,
+            "current": false,
+            "streaming_service": 4
+        }
+    },
+    {
+        "model": "troveapi.show",
+        "pk": 9,
+        "fields": {
+            "name": "Modern Family",
+            "user": 2,
+            "current": false,
+            "streaming_service": 3
+        }
+    },
+    {
+        "model": "troveapi.show",
+        "pk": 10,
+        "fields": {
+            "name": "American Horror Story",
+            "user": 2,
+            "current": true,
+            "streaming_service": 4
+        }
+    }
+]

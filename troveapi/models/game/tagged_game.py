@@ -1,6 +1,6 @@
 from django.db import models
-from ..tagged_media_parent import TaggedMedia
 
 
-class TaggedGame(TaggedMedia):
+class TaggedGame(models.Model):
     game = models.ForeignKey("Game", on_delete=models.CASCADE)
+    tag = models.ForeignKey("Tag", on_delete=models.CASCADE)

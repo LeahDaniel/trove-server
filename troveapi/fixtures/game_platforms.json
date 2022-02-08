@@ -1,0 +1,202 @@
+[
+    {
+        "model": "troveapi.gameplatform",
+        "pk": 1,
+        "fields": {
+            "game": 1,
+            "platform": 1
+        }
+    },
+    {
+        "model": "troveapi.gameplatform",
+        "pk": 2,
+        "fields": {
+            "game": 6,
+            "platform": 1
+        }
+    },
+    {
+        "model": "troveapi.gameplatform",
+        "pk": 3,
+        "fields": {
+            "game": 6,
+            "platform": 2
+        }
+    },
+    {
+        "model": "troveapi.gameplatform",
+        "pk": 4,
+        "fields": {
+            "game": 4,
+            "platform": 4
+        }
+    },
+    {
+        "model": "troveapi.gameplatform",
+        "pk": 5,
+        "fields": {
+            "game": 10,
+            "platform": 2
+        }
+    },
+    {
+        "model": "troveapi.gameplatform",
+        "pk": 6,
+        "fields": {
+            "game": 12,
+            "platform": 4
+        }
+    },
+    {
+        "model": "troveapi.gameplatform",
+        "pk": 7,
+        "fields": {
+            "game": 11,
+            "platform": 1
+        }
+    },
+    {
+        "model": "troveapi.gameplatform",
+        "pk": 8,
+        "fields": {
+            "game": 13,
+            "platform": 1
+        }
+    },
+    {
+        "model": "troveapi.gameplatform",
+        "pk": 9,
+        "fields": {
+            "game": 9,
+            "platform": 1
+        }
+    },
+    {
+        "model": "troveapi.gameplatform",
+        "pk": 10,
+        "fields": {
+            "game": 14,
+            "platform": 1
+        }
+    },
+    {
+        "model": "troveapi.gameplatform",
+        "pk": 11,
+        "fields": {
+            "game": 14,
+            "platform": 3
+        }
+    },
+    {
+        "model": "troveapi.gameplatform",
+        "pk": 12,
+        "fields": {
+            "game": 14,
+            "platform": 2
+        }
+    },
+    {
+        "model": "troveapi.gameplatform",
+        "pk": 13,
+        "fields": {
+            "game": 14,
+            "platform": 4
+        }
+    },
+    {
+        "model": "troveapi.gameplatform",
+        "pk": 14,
+        "fields": {
+            "game": 14,
+            "platform": 5
+        }
+    },
+    {
+        "model": "troveapi.gameplatform",
+        "pk": 15,
+        "fields": {
+            "game": 3,
+            "platform": 2
+        }
+    },
+    {
+        "model": "troveapi.gameplatform",
+        "pk": 16,
+        "fields": {
+            "game": 3,
+            "platform": 3
+        }
+    },
+    {
+        "model": "troveapi.gameplatform",
+        "pk": 17,
+        "fields": {
+            "game": 3,
+            "platform": 1
+        }
+    },
+    {
+        "model": "troveapi.gameplatform",
+        "pk": 18,
+        "fields": {
+            "game": 5,
+            "platform": 2
+        }
+    },
+    {
+        "model": "troveapi.gameplatform",
+        "pk": 19,
+        "fields": {
+            "game": 5,
+            "platform": 1
+        }
+    },
+    {
+        "model": "troveapi.gameplatform",
+        "pk": 20,
+        "fields": {
+            "game": 5,
+            "platform": 4
+        }
+    },
+    {
+        "model": "troveapi.gameplatform",
+        "pk": 21,
+        "fields": {
+            "game": 5,
+            "platform": 3
+        }
+    },
+    {
+        "model": "troveapi.gameplatform",
+        "pk": 22,
+        "fields": {
+            "game": 15,
+            "platform": 1
+        }
+    },
+    {
+        "model": "troveapi.gameplatform",
+        "pk": 23,
+        "fields": {
+            "game": 15,
+            "platform": 3
+        }
+    },
+    {
+        "model": "troveapi.gameplatform",
+        "pk": 24,
+        "fields": {
+            "game": 15,
+            "platform": 2
+        }
+    },
+    {
+        "model": "troveapi.gameplatform",
+        "pk": 25,
+        "fields": {
+            "game": 15,
+            "platform": 4
+        }
+    }
+]

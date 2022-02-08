@@ -5,4 +5,8 @@
         "--load-plugins=pylint_django",
         "--django-settings-module=trove.settings",
     ],
+    "cSpell.words": [
+        "gameplatform",
+        "troveapi"
+    ],
 }

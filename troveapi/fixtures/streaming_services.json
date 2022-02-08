@@ -1,0 +1,51 @@
+[
+    {
+        "model": "troveapi.streamingservice",
+        "pk": 1,
+        "fields": {
+            "service": "Disney+"
+        }
+    },
+    {
+        "model": "troveapi.streamingservice",
+        "pk": 2,
+        "fields": {
+            "service": "HBO"
+        }
+    },
+    {
+        "model": "troveapi.streamingservice",
+        "pk": 3,
+        "fields": {
+            "service": "Hulu"
+        }
+    },
+    {
+        "model": "troveapi.streamingservice",
+        "pk": 4,
+        "fields": {
+            "service": "Netflix"
+        }
+    },
+    {
+        "model": "troveapi.streamingservice",
+        "pk": 5,
+        "fields": {
+            "service": "Prime"
+        }
+    },
+    {
+        "model": "troveapi.streamingservice",
+        "pk": 6,
+        "fields": {
+            "service": "Youtube TV"
+        }
+    },
+    {
+        "model": "troveapi.streamingservice",
+        "pk": 7,
+        "fields": {
+            "service": "Other"
+        }
+    }
+]

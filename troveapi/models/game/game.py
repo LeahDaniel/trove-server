@@ -1,6 +1,14 @@
 from django.db import models
-from ..media_parent import Media
+from django.contrib.auth.models import User
 
 
-class Game(Media):
-    multiplayer_capable= models.BooleanField()
+class Game(models.Model):
+    multiplayer_capable = models.BooleanField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=50)
+    current = models.BooleanField()
+    platforms = models.ManyToManyField(
+        "Platform", through="GamePlatform", related_name="platforms")
+    tags = models.ManyToManyField(
+        "Tag", through="TaggedGame", related_name="gameTags")
+
