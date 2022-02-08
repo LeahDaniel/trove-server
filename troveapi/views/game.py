@@ -62,7 +62,7 @@ class GameView(ViewSet):
             Response -- JSON serialized game instance
         """
 
-        user = User.objects.get(user=request.auth.user)
+        user = User.objects.get(pk=request.auth.user.id)
 
         serializer = CreateGameSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -85,10 +85,10 @@ class GameView(ViewSet):
 
             serializer = CreateGameSerializer(game, data=request.data)
             serializer.is_valid(raise_exception=True)
-            game = serializer.save()
+            updated_game = serializer.save()
 
-            game.tags.set(request.data["tags"])
-            game.platforms.set(request.data["platforms"])
+            updated_game.tags.set(request.data["tags"])
+            updated_game.platforms.set(request.data["platforms"])
 
             return Response(None, status=status.HTTP_204_NO_CONTENT)
         except Game.DoesNotExist as ex:
@@ -124,5 +124,5 @@ class CreateGameSerializer(serializers.ModelSerializer):
     class Meta:
         model = Game
         depth = 1
-        fields = ('multiplayer_capable', 'name',
+        fields = ('id', 'multiplayer_capable', 'name',
                   'current', 'platforms', 'tags')
