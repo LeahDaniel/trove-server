@@ -19,13 +19,14 @@ from django.urls import path
 from rest_framework import routers
 from troveapi.views import (AuthorView, BookRecommendationView, BookView,
                             GameView, PlatformView, StreamingServiceView,
-                            TagView, login_user, register_user)
+                            TagView, UserView, login_user, register_user)
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'games', GameView, 'game')
 router.register(r'platforms', PlatformView, 'platform')
 router.register(r'tags', TagView, 'tag')
 router.register(r'books', BookView, 'book')
+router.register(r'users', UserView, 'user')
 router.register(r'authors', AuthorView, 'author')
 router.register(r'book_recommendations', BookRecommendationView, 'bookRecommendation')
 router.register(r'streaming_services', StreamingServiceView, 'streaming service')

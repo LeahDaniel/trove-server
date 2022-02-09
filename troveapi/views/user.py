@@ -8,15 +8,19 @@ from django.contrib.auth.models import User
 class UserView(ViewSet):
     """Trove user view"""
 
-    def retrieve(self, request, pk):
+    def list(self, request):
         """Handle GET requests for single user
 
         Returns:
             Response -- JSON serialized user
         """
         try:
+            user = User.objects.get(pk=request.auth.user.id)
+
             username_text = self.request.query_params.get('username', None)
-            user = User.objects.get(username=username_text)
+            if username_text:
+                user = User.objects.get(username=username_text)
+
             serializer = UserSerializer(user)
             return Response(serializer.data)
         except User.DoesNotExist as ex:
@@ -28,4 +32,4 @@ class UserSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = User
-        fields = 'id', 'username'
+        fields = 'id', 'username', 'first_name', 'last_name'
