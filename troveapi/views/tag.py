@@ -19,13 +19,16 @@ class TagView(ViewSet):
         tags = Tag.objects.order_by("tag").filter(user=request.auth.user)
 
         search_text = self.request.query_params.get('q', None)
+        join_text = self.request.query_params.get('join', None)
 
         if search_text:
             tags = Tag.objects.order_by("tag").filter(
                 Q(tag__contains=search_text) &
                 Q(user=request.auth.user)
             )
-
+        if join_text:
+            tags = Tag.objects.select_related(join_text)
+            
         serializer = TagSerializer(tags, many=True)
 
         return Response(serializer.data)

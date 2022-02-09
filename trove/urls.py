@@ -31,10 +31,10 @@ router.register(r'platforms', PlatformView, 'platform')
 router.register(r'tags', TagView, 'tag')
 router.register(r'users', UserView, 'user')
 router.register(r'authors', AuthorView, 'author')
-router.register(r'book_recommendations', BookRecommendationView, 'bookRecommendation')
-router.register(r'show_recommendations', ShowRecommendationView, 'showRecommendation')
-router.register(r'game_recommendations', GameRecommendationView, 'gameRecommendation')
-router.register(r'streaming_services', StreamingServiceView, 'streaming service')
+router.register(r'bookRecommendations', BookRecommendationView, 'bookRecommendation')
+router.register(r'showRecommendations', ShowRecommendationView, 'showRecommendation')
+router.register(r'gameRecommendations', GameRecommendationView, 'gameRecommendation')
+router.register(r'streamingServices', StreamingServiceView, 'streaming service')
 
 
 urlpatterns = [
