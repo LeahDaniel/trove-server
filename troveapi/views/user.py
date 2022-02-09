@@ -15,7 +15,8 @@ class UserView(ViewSet):
             Response -- JSON serialized user
         """
         try:
-            user = User.objects.get(username=request.data['username'])
+            username_text = self.request.query_params.get('username', None)
+            user = User.objects.get(username=username_text)
             serializer = UserSerializer(user)
             return Response(serializer.data)
         except User.DoesNotExist as ex:
