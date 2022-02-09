@@ -1,0 +1,125 @@
+"""View module for handling requests about books"""
+from django.contrib.auth.models import User
+from django.db.models import Q
+from rest_framework import serializers, status
+from rest_framework.response import Response
+from rest_framework.viewsets import ViewSet
+from troveapi.models import Book
+
+
+class BookView(ViewSet):
+    """Trove book view"""
+
+    def retrieve(self, request, pk):
+        """Handle GET requests for single book
+
+        Returns:
+            Response -- JSON serialized book
+        """
+        try:
+            book = Book.objects.get(pk=pk)
+            serializer = BookSerializer(book)
+            return Response(serializer.data)
+        except Book.DoesNotExist as ex:
+            return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
+
+    def list(self, request):
+        """Handle GET requests to get all books
+
+        Returns:
+            Response -- JSON serialized list of books
+        """
+        books = Book.objects.filter(user=request.auth.user)
+
+        search_text = self.request.query_params.get('q', None)
+        current_text = self.request.query_params.get('current', None)
+
+        if search_text and current_text:
+            books = Book.objects.filter(
+                Q(name__contains=search_text) &
+                Q(current=current_text) &
+                Q(user=request.auth.user)
+            )
+        elif search_text:
+            books = Book.objects.filter(
+                Q(name__contains=search_text) &
+                Q(user=request.auth.user)
+            )
+        elif current_text:
+            books = Book.objects.filter(
+                Q(current=current_text) &
+                Q(user=request.auth.user)
+            )
+
+        serializer = BookSerializer(books, many=True)
+
+        return Response(serializer.data)
+
+    def create(self, request):
+        """Handle POST operations
+
+        Returns:
+            Response -- JSON serialized book instance
+        """
+
+        user = User.objects.get(pk=request.auth.user.id)
+
+        serializer = CreateBookSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        book = serializer.save(user=user)
+
+        book.tags.set(request.data["tags"])
+
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+    def update(self, request, pk):
+        """Handle PUT requests for a book
+
+        Returns:
+            Response -- Empty body with 204 status code
+        """
+
+        try:
+            book = Book.objects.get(pk=pk)
+
+            serializer = CreateBookSerializer(book, data=request.data)
+            serializer.is_valid(raise_exception=True)
+            updated_book = serializer.save()
+
+            updated_book.tags.set(request.data["tags"])
+
+            return Response(None, status=status.HTTP_204_NO_CONTENT)
+        except Book.DoesNotExist as ex:
+            return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
+
+    def destroy(self, request, pk):
+        """Handle DELETE requests for a book
+
+        Returns:
+            Response -- Empty body with 204 status code
+        """
+        try:
+            book = Book.objects.get(pk=pk)
+            book.delete()
+            return Response(None, status=status.HTTP_204_NO_CONTENT)
+        except Book.DoesNotExist as ex:
+            return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
+
+
+class BookSerializer(serializers.ModelSerializer):
+    """JSON serializer for book types
+    """
+    class Meta:
+        model = Book
+        depth = 1
+        fields = ('id', 'user',
+                  'name', 'current', 'author', 'tags')
+
+
+class CreateBookSerializer(serializers.ModelSerializer):
+    """JSON serializer for book types
+    """
+    class Meta:
+        model = Book
+        fields = ('id', 'name',
+                  'current', 'author', 'tags')
