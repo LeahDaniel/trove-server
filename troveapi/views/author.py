@@ -14,7 +14,7 @@ class AuthorView(ViewSet):
         Returns:
             Response -- JSON serialized list of authors
         """
-        authors = Author.objects.filter(user=request.auth.user)
+        authors = Author.objects.filter(user=request.auth.user).order_by('name')
         serializer = AuthorSerializer(authors, many=True)
 
         return Response(serializer.data)
