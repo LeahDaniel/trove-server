@@ -5,3 +5,4 @@ from .tag import TagView
 from .book import BookView
 from .streaming_service import StreamingServiceView
 from .author import AuthorView
+from .book_recommendation import BookRecommendationView
