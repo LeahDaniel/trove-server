@@ -51,23 +51,6 @@ class ShowRecommendationView(ViewSet):
 
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-    def update(self, request, pk):
-        """Handle PUT requests for a show_recommendation
-
-        Returns:
-            Response -- Empty body with 204 status code
-        """
-
-        try:
-            show_recommendation = ShowRecommendation.objects.get(pk=pk)
-
-            show_recommendation.read = True
-            show_recommendation.save()
-
-            return Response(None, status=status.HTTP_204_NO_CONTENT)
-        except ShowRecommendation.DoesNotExist as ex:
-            return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
-
     def destroy(self, request, pk):
         """Handle DELETE requests for a showRecommendation
 
