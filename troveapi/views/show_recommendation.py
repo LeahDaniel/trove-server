@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from rest_framework import serializers, status
 from rest_framework.response import Response
 from rest_framework.viewsets import ViewSet
+from rest_framework.decorators import action
 from troveapi.models import ShowRecommendation
 
 
@@ -50,23 +51,6 @@ class ShowRecommendationView(ViewSet):
 
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-    def update(self, request, pk):
-        """Handle PUT requests for a show_recommendation
-
-        Returns:
-            Response -- Empty body with 204 status code
-        """
-
-        try:
-            show_recommendation = ShowRecommendation.objects.get(pk=pk)
-
-            show_recommendation.read = True
-            show_recommendation.save()
-
-            return Response(None, status=status.HTTP_204_NO_CONTENT)
-        except ShowRecommendation.DoesNotExist as ex:
-            return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
-
     def destroy(self, request, pk):
         """Handle DELETE requests for a showRecommendation
 
@@ -79,6 +63,15 @@ class ShowRecommendationView(ViewSet):
             return Response(None, status=status.HTTP_204_NO_CONTENT)
         except ShowRecommendation.DoesNotExist as ex:
             return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
+
+    @action(methods=['put'], detail=False)
+    def read(self, request):
+        """Put requests to mark all of users received recommendations as read"""
+
+        ShowRecommendation.objects.filter(
+            recipient=request.auth.user.id).update(read=True)
+
+        return Response({'message': 'Show Recommendations marked as read'}, status=status.HTTP_204_NO_CONTENT)
 
 
 class RecoSerializer(serializers.ModelSerializer):
