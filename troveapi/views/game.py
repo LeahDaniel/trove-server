@@ -107,15 +107,6 @@ class GameView(ViewSet):
             return Response(None, status=status.HTTP_204_NO_CONTENT)
         except Game.DoesNotExist as ex:
             return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
-        
-    @action(methods=['put'], detail=True)
-    def platform(self, request, pk):
-        """Put request for a user to change platforms from many to one"""
-
-        game = Game.objects.get(pk=pk)
-        game.platforms.set([request.data['platform']])
-        
-        return Response({'message': 'Platforms changed'}, status=status.HTTP_204_NO_CONTENT)
 
 
 class GameSerializer(serializers.ModelSerializer):
