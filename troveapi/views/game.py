@@ -2,7 +2,6 @@
 from django.contrib.auth.models import User
 from django.db.models import Q
 from rest_framework import serializers, status
-from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.viewsets import ViewSet
 from troveapi.models import Game
@@ -32,25 +31,31 @@ class GameView(ViewSet):
         """
         games = Game.objects.filter(user=request.auth.user)
 
-        search_text = self.request.query_params.get('q', None)
-        current_text = self.request.query_params.get('current', None)
+        search_text = request.query_params.get('search', None)
+        # current must be passed in as string, not boolean 
+        # due to diff between True and true in Python
+        current_boolean = request.query_params.get('current', None)
+        # multiplayer must be passed in as string, not boolean 
+        multiplayer_boolean = request.query_params.get('multiplayer', None)
+        # can be passed as int or string
+        platform_id = request.query_params.get('platformId', None)
+        tag_list = request.query_params.getlist('tags', '')
 
-        if search_text and current_text:
-            games = Game.objects.filter(
-                Q(name__contains=search_text) &
-                Q(current=current_text) &
-                Q(user=request.auth.user)
-            )
-        elif search_text:
-            games = Game.objects.filter(
-                Q(name__contains=search_text) &
-                Q(user=request.auth.user)
-            )
-        elif current_text:
-            games = Game.objects.filter(
-                Q(current=current_text) &
-                Q(user=request.auth.user)
-            )
+        filter_params = Q(user=request.auth.user)
+        if search_text:
+            filter_params &= Q(name__contains=search_text)
+        if current_boolean:
+            filter_params &= Q(current=current_boolean)
+        if multiplayer_boolean:
+            filter_params &= Q(multiplayer_capable=multiplayer_boolean)
+        if platform_id:
+            filter_params &= Q(platforms__id=platform_id)
+
+        games = Game.objects.filter(filter_params)
+
+        if tag_list:
+            for tag_id in tag_list:
+                games = games.filter(tags__id=tag_id)
 
         serializer = GameSerializer(games, many=True)
 

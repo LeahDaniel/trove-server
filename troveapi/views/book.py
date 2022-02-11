@@ -31,25 +31,27 @@ class BookView(ViewSet):
         """
         books = Book.objects.filter(user=request.auth.user)
 
-        search_text = self.request.query_params.get('q', None)
-        current_text = self.request.query_params.get('current', None)
+        search_text = request.query_params.get('search', None)
+        # current must be passed in as string, not boolean 
+        # due to diff between True and true in Python
+        current_boolean = request.query_params.get('current', None)
+        # can be passed as int or string
+        author_id = request.query_params.get('authorId', None)
+        tag_list = request.query_params.getlist('tags', '')
 
-        if search_text and current_text:
-            books = Book.objects.filter(
-                Q(name__contains=search_text) &
-                Q(current=current_text) &
-                Q(user=request.auth.user)
-            )
-        elif search_text:
-            books = Book.objects.filter(
-                Q(name__contains=search_text) &
-                Q(user=request.auth.user)
-            )
-        elif current_text:
-            books = Book.objects.filter(
-                Q(current=current_text) &
-                Q(user=request.auth.user)
-            )
+        filter_params = Q(user=request.auth.user)
+        if search_text:
+            filter_params &= Q(name__contains=search_text)
+        if current_boolean:
+            filter_params &= Q(current=current_boolean)
+        if author_id:
+            filter_params &= Q(author__id=author_id)
+
+        books = Book.objects.filter(filter_params)
+
+        if tag_list:
+            for tag_id in tag_list:
+                books = books.filter(tags__id=tag_id)
 
         serializer = BookSerializer(books, many=True)
 
