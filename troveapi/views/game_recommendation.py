@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from rest_framework.viewsets import ViewSet
 from rest_framework.decorators import action
 from troveapi.models import GameRecommendation
+from troveapi.views.user import UserSerializer
 
 
 class GameRecommendationView(ViewSet):
@@ -78,10 +79,13 @@ class GameRecommendationView(ViewSet):
 class RecoSerializer(serializers.ModelSerializer):
     """JSON serializer for game types
     """
+    sender = UserSerializer(many=False)
+    recipient = UserSerializer(many=False)
+
     class Meta:
         model = GameRecommendation
-        depth = 2
-        fields = '__all__'
+        depth = 1
+        fields = ('id', 'game', 'recipient', 'message', 'sender')
 
 
 class CreateRecoSerializer(serializers.ModelSerializer):

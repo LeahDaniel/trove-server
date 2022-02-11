@@ -5,6 +5,7 @@ from rest_framework import serializers, status
 from rest_framework.response import Response
 from rest_framework.viewsets import ViewSet
 from troveapi.models import Game
+from troveapi.views.user import UserSerializer
 
 
 class GameView(ViewSet):
@@ -117,6 +118,8 @@ class GameView(ViewSet):
 class GameSerializer(serializers.ModelSerializer):
     """JSON serializer for game types
     """
+    user = UserSerializer(many=False)
+    
     class Meta:
         model = Game
         depth = 1

@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from rest_framework.viewsets import ViewSet
 from rest_framework.decorators import action
 from troveapi.models import BookRecommendation
+from troveapi.views.user import UserSerializer
 
 
 class BookRecommendationView(ViewSet):
@@ -77,10 +78,13 @@ class BookRecommendationView(ViewSet):
 class RecoSerializer(serializers.ModelSerializer):
     """JSON serializer for book types
     """
+    sender = UserSerializer(many=False)
+    recipient = UserSerializer(many=False)
+
     class Meta:
         model = BookRecommendation
-        depth = 2
-        fields = '__all__'
+        depth = 1
+        fields = ('id', 'book', 'recipient', 'message', 'sender')
 
 
 class CreateRecoSerializer(serializers.ModelSerializer):
