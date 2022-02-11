@@ -38,10 +38,6 @@ class BookView(ViewSet):
         author_id = request.query_params.get('authorId', None)
         tag_list = request.query_params.getlist('tags', '')
 
-        # tagArray ex: [1, 2, 53, 54]
-        # need to filter books to ones that have EVERY tag in the tagArray
-        # currently this only works for one tag eg. [50]
-
         filter_params = Q(user=request.auth.user)
         if search_text:
             filter_params &= Q(name__contains=search_text)
@@ -55,10 +51,6 @@ class BookView(ViewSet):
         if tag_list:
             for tag_id in tag_list:
                 books = books.filter(tags__id=tag_id)
-
-            # the following doesn't work because it's checking that one tag has multiple different pks simultaneously
-            # for tag_id in tag_list:
-            #     filter_params &= Q(tags__pk=tag_id)
 
         serializer = BookSerializer(books, many=True)
 

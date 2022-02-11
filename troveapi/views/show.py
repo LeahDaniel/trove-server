@@ -31,25 +31,26 @@ class ShowView(ViewSet):
         """
         shows = Show.objects.filter(user=request.auth.user)
 
-        search_text = self.request.query_params.get('q', None)
-        current_text = self.request.query_params.get('current', None)
+        search_text = request.query_params.get('search', None)
+        # current must be passed in as string, not boolean (due to diff btwn True and true in Python)
+        current_boolean = request.query_params.get('current', None)
+        # can be passed as int or string
+        streaming_service_id = request.query_params.get('streamingServiceId', None)
+        tag_list = request.query_params.getlist('tags', '')
 
-        if search_text and current_text:
-            shows = Show.objects.filter(
-                Q(name__contains=search_text) &
-                Q(current=current_text) &
-                Q(user=request.auth.user)
-            )
-        elif search_text:
-            shows = Show.objects.filter(
-                Q(name__contains=search_text) &
-                Q(user=request.auth.user)
-            )
-        elif current_text:
-            shows = Show.objects.filter(
-                Q(current=current_text) &
-                Q(user=request.auth.user)
-            )
+        filter_params = Q(user=request.auth.user)
+        if search_text:
+            filter_params &= Q(name__contains=search_text)
+        if current_boolean:
+            filter_params &= Q(current=current_boolean)
+        if streaming_service_id:
+            filter_params &= Q(streaming_service__id=streaming_service_id)
+
+        shows = Show.objects.filter(filter_params)
+
+        if tag_list:
+            for tag_id in tag_list:
+                shows = shows.filter(tags__id=tag_id)
 
         serializer = ShowSerializer(shows, many=True)
 
