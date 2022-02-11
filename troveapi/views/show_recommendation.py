@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from rest_framework.viewsets import ViewSet
 from rest_framework.decorators import action
 from troveapi.models import ShowRecommendation
+from troveapi.views.user import UserSerializer
 
 
 class ShowRecommendationView(ViewSet):
@@ -69,7 +70,7 @@ class ShowRecommendationView(ViewSet):
         """Put requests to mark all of users received recommendations as read"""
 
         ShowRecommendation.objects.filter(
-            recipient=request.auth.user.id).update(read=True)
+            recipient=request.auth.user.id, read=False).update(read=True)
 
         return Response({'message': 'Show Recommendations marked as read'}, status=status.HTTP_204_NO_CONTENT)
 
@@ -77,10 +78,13 @@ class ShowRecommendationView(ViewSet):
 class RecoSerializer(serializers.ModelSerializer):
     """JSON serializer for show types
     """
+    sender = UserSerializer(many=False)
+    recipient = UserSerializer(many=False)
+
     class Meta:
         model = ShowRecommendation
-        depth = 2
-        fields = '__all__'
+        depth = 1
+        fields = ('id', 'show', 'recipient', 'message', 'sender')
 
 
 class CreateRecoSerializer(serializers.ModelSerializer):

@@ -63,4 +63,4 @@ def register_user(request):
         data = {'token': token.key, "userId": new_user.id}
         return Response(data)
     except IntegrityError as ex:
-        return Response({'message': ex.args[0]}, status=status.HTTP_409_CONFLICT)
+        return Response({'message': ex.args[0]})

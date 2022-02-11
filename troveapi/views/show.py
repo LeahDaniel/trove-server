@@ -5,6 +5,7 @@ from rest_framework import serializers, status
 from rest_framework.response import Response
 from rest_framework.viewsets import ViewSet
 from troveapi.models import Show
+from troveapi.views.user import UserSerializer
 
 
 class ShowView(ViewSet):
@@ -111,6 +112,8 @@ class ShowView(ViewSet):
 class ShowSerializer(serializers.ModelSerializer):
     """JSON serializer for show types
     """
+    user = UserSerializer(many=False)
+    
     class Meta:
         model = Show
         depth = 1

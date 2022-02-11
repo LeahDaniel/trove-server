@@ -5,6 +5,7 @@ from rest_framework import serializers, status
 from rest_framework.response import Response
 from rest_framework.viewsets import ViewSet
 from troveapi.models import Book
+from troveapi.views.user import UserSerializer
 
 
 class BookView(ViewSet):
@@ -111,6 +112,8 @@ class BookView(ViewSet):
 class BookSerializer(serializers.ModelSerializer):
     """JSON serializer for book types
     """
+    user = UserSerializer(many=False)
+    
     class Meta:
         model = Book
         depth = 1
