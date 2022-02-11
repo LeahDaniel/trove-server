@@ -32,7 +32,8 @@ class ShowView(ViewSet):
         shows = Show.objects.filter(user=request.auth.user)
 
         search_text = request.query_params.get('search', None)
-        # current must be passed in as string, not boolean (due to diff btwn True and true in Python)
+        # current must be passed in as string, not boolean 
+        # due to diff btwn True and true in Python
         current_boolean = request.query_params.get('current', None)
         # can be passed as int or string
         streaming_service_id = request.query_params.get('streamingServiceId', None)

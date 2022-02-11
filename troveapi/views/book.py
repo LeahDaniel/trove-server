@@ -1,10 +1,10 @@
 """View module for handling requests about books"""
 from django.contrib.auth.models import User
-from django.db.models import Q, Count
+from django.db.models import Q
 from rest_framework import serializers, status
 from rest_framework.response import Response
 from rest_framework.viewsets import ViewSet
-from troveapi.models import Book, Tag
+from troveapi.models import Book
 
 
 class BookView(ViewSet):
@@ -32,7 +32,8 @@ class BookView(ViewSet):
         books = Book.objects.filter(user=request.auth.user)
 
         search_text = request.query_params.get('search', None)
-        # current must be passed in as string, not boolean (due to diff btwn True and true in Python)
+        # current must be passed in as string, not boolean 
+        # due to diff between True and true in Python
         current_boolean = request.query_params.get('current', None)
         # can be passed as int or string
         author_id = request.query_params.get('authorId', None)
