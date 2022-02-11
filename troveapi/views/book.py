@@ -1,10 +1,10 @@
 """View module for handling requests about books"""
 from django.contrib.auth.models import User
-from django.db.models import Q
+from django.db.models import Q, Count
 from rest_framework import serializers, status
 from rest_framework.response import Response
 from rest_framework.viewsets import ViewSet
-from troveapi.models import Book
+from troveapi.models import Book, Tag
 
 
 class BookView(ViewSet):
@@ -31,25 +31,34 @@ class BookView(ViewSet):
         """
         books = Book.objects.filter(user=request.auth.user)
 
-        search_text = self.request.query_params.get('q', None)
-        current_text = self.request.query_params.get('current', None)
+        search_text = request.query_params.get('search', None)
+        # current must be passed in as string, not boolean (due to diff btwn True and true in Python)
+        current_boolean = request.query_params.get('current', None)
+        # can be passed as int or string
+        author_id = request.query_params.get('authorId', None)
+        tag_list = request.query_params.getlist('tags', '')
 
-        if search_text and current_text:
-            books = Book.objects.filter(
-                Q(name__contains=search_text) &
-                Q(current=current_text) &
-                Q(user=request.auth.user)
-            )
-        elif search_text:
-            books = Book.objects.filter(
-                Q(name__contains=search_text) &
-                Q(user=request.auth.user)
-            )
-        elif current_text:
-            books = Book.objects.filter(
-                Q(current=current_text) &
-                Q(user=request.auth.user)
-            )
+        # tagArray ex: [1, 2, 53, 54]
+        # need to filter books to ones that have EVERY tag in the tagArray
+        # currently this only works for one tag eg. [50]
+
+        filter_params = Q(user=request.auth.user)
+        if search_text:
+            filter_params &= Q(name__contains=search_text)
+        if current_boolean:
+            filter_params &= Q(current=current_boolean)
+        if author_id:
+            filter_params &= Q(author__id=author_id)
+
+        books = Book.objects.filter(filter_params)
+
+        if tag_list:
+            for tag_id in tag_list:
+                books = books.filter(tags__id=tag_id)
+
+            # the following doesn't work because it's checking that one tag has multiple different pks simultaneously
+            # for tag_id in tag_list:
+            #     filter_params &= Q(tags__pk=tag_id)
 
         serializer = BookSerializer(books, many=True)
 
