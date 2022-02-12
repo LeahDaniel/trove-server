@@ -2,10 +2,10 @@
 from django.contrib.auth.models import User
 from django.db.models import Q, Count
 from rest_framework import serializers, status
+from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.viewsets import ViewSet
 from troveapi.models import Tag
-from troveapi.views.user import UserSerializer
 
 
 class TagView(ViewSet):
@@ -115,6 +115,27 @@ class TagView(ViewSet):
             return Response(None, status=status.HTTP_204_NO_CONTENT)
         except Tag.DoesNotExist as ex:
             return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
+
+    @action(methods=['post'], detail=False)
+    def seed(self, request):
+        """Seed a user's database with some general tags to get them started when they register"""
+
+        user = User.objects.get(pk=request.auth.user.id)
+        default_tags = ["Action", "Adventure", "Comedy", "Drama", "Mystery",
+                        "Fantasy", "Historical", "Horror", "Romance", "Science Fiction", "Thriller",
+                        "Western", "Platformer", "Shooter", "Survival", "RPG",
+                        "Strategy", "Esports", "Casual", "Educational", "Open world"
+                        ]
+
+        data_list = []
+
+        for tag_string in default_tags:
+            serializer = CreateTagSerializer(data={"tag": tag_string})
+            serializer.is_valid(raise_exception=True)
+            serializer.save(user=user)
+            data_list.append(serializer.data)
+
+        return Response(data_list, status=status.HTTP_201_CREATED)
 
 
 class TagSerializer(serializers.ModelSerializer):
