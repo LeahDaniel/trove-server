@@ -6,7 +6,8 @@
             "name": "The Witcher",
             "user": 2,
             "current": true,
-            "streaming_service": 4
+            "streaming_service": 4,
+            "last_modified": "2011-09-01T13:20:30+03:00"
         }
     },
     {
@@ -16,7 +17,8 @@
             "name": "Psych",
             "user": 2,
             "current": true,
-            "streaming_service": 5
+            "streaming_service": 5,
+            "last_modified": "2011-09-01T13:20:30+03:00"
         }
     },
     {
@@ -26,7 +28,8 @@
             "name": "Love Island",
             "user": 2,
             "current": true,
-            "streaming_service": 3
+            "streaming_service": 3,
+            "last_modified": "2011-09-01T13:20:30+03:00"
         }
     },
     {
@@ -36,7 +39,8 @@
             "name": "Loki",
             "user": 2,
             "current": false,
-            "streaming_service": 1
+            "streaming_service": 1,
+            "last_modified": "2011-09-01T13:20:30+03:00"
         }
     },
     {
@@ -46,7 +50,8 @@
             "name": "IT Crowd",
             "user": 2,
             "current": true,
-            "streaming_service": 4
+            "streaming_service": 4,
+            "last_modified": "2011-09-01T13:20:30+03:00"
         }
     },
     {
@@ -56,7 +61,8 @@
             "name": "Queer Eye",
             "user": 2,
             "current": false,
-            "streaming_service": 4
+            "streaming_service": 4,
+            "last_modified": "2011-09-01T13:20:30+03:00"
         }
     },
     {
@@ -66,7 +72,8 @@
             "name": "Modern Family",
             "user": 2,
             "current": false,
-            "streaming_service": 3
+            "streaming_service": 3,
+            "last_modified": "2011-09-01T13:20:30+03:00"
         }
     },
     {
@@ -76,7 +83,8 @@
             "name": "American Horror Story",
             "user": 2,
             "current": true,
-            "streaming_service": 4
+            "streaming_service": 4,
+            "last_modified": "2011-09-01T13:20:30+03:00"
         }
     }
 ]
