@@ -30,8 +30,6 @@ class BookView(ViewSet):
         Returns:
             Response -- JSON serialized list of books
         """
-        books = Book.objects.filter(user=request.auth.user)
-
         search_text = request.query_params.get('search', None)
         # current must be passed in as string, not boolean 
         # due to diff between True and true in Python
@@ -48,7 +46,7 @@ class BookView(ViewSet):
         if author_id:
             filter_params &= Q(author__id=author_id)
 
-        books = Book.objects.filter(filter_params)
+        books = Book.objects.filter(filter_params).order_by('-last_modified')
 
         if tag_list:
             for tag_id in tag_list:

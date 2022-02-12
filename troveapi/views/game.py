@@ -30,8 +30,6 @@ class GameView(ViewSet):
         Returns:
             Response -- JSON serialized list of games
         """
-        games = Game.objects.filter(user=request.auth.user)
-
         search_text = request.query_params.get('search', None)
         # current must be passed in as string, not boolean 
         # due to diff between True and true in Python
@@ -52,7 +50,7 @@ class GameView(ViewSet):
         if platform_id:
             filter_params &= Q(platforms__id=platform_id)
 
-        games = Game.objects.filter(filter_params)
+        games = Game.objects.filter(filter_params).order_by('-last_modified')
 
         if tag_list:
             for tag_id in tag_list:

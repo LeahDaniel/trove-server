@@ -30,8 +30,6 @@ class ShowView(ViewSet):
         Returns:
             Response -- JSON serialized list of shows
         """
-        shows = Show.objects.filter(user=request.auth.user)
-
         search_text = request.query_params.get('search', None)
         # current must be passed in as string, not boolean 
         # due to diff btwn True and true in Python
@@ -48,7 +46,7 @@ class ShowView(ViewSet):
         if streaming_service_id:
             filter_params &= Q(streaming_service__id=streaming_service_id)
 
-        shows = Show.objects.filter(filter_params)
+        shows = Show.objects.filter(filter_params).order_by('-last_modified')
 
         if tag_list:
             for tag_id in tag_list:

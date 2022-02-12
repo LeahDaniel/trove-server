@@ -6,7 +6,8 @@
             "name": "Fallout: New Vegas",
             "user": 2,
             "current": true,
-            "multiplayer_capable": false
+            "multiplayer_capable": false,
+            "last_modified": "2011-09-01T13:20:30+03:00"
         }
     },
     {
@@ -16,7 +17,8 @@
             "name": "XCOM: Enemy Unknown",
             "user": 2,
             "current": false,
-            "multiplayer_capable": false
+            "multiplayer_capable": false,
+            "last_modified": "2011-09-01T13:20:30+03:00"
         }
     },
     {
@@ -26,7 +28,8 @@
             "name": "Pokemon Brilliant Diamond",
             "user": 2,
             "current": true,
-            "multiplayer_capable": true
+            "multiplayer_capable": true,
+            "last_modified": "2011-09-01T13:20:30+03:00"
         }
     },
     {
@@ -36,7 +39,8 @@
             "name": "Divinity: Original Sin 2",
             "user": 2,
             "current": false,
-            "multiplayer_capable": true
+            "multiplayer_capable": true,
+            "last_modified": "2011-09-01T13:20:30+03:00"
         }
     },
     {
@@ -46,7 +50,8 @@
             "name": "The Witcher 2",
             "user": 2,
             "current": false,
-            "multiplayer_capable": false
+            "multiplayer_capable": false,
+            "last_modified": "2011-09-01T13:20:30+03:00"
         }
     },
     {
@@ -56,7 +61,8 @@
             "name": "The Witcher 3",
             "user": 2,
             "current": true,
-            "multiplayer_capable": false
+            "multiplayer_capable": false,
+            "last_modified": "2011-09-01T13:20:30+03:00"
         }
     },
     {
@@ -66,7 +72,8 @@
             "name": "Guitar Hero",
             "user": 2,
             "current": true,
-            "multiplayer_capable": true
+            "multiplayer_capable": true,
+            "last_modified": "2011-09-01T13:20:30+03:00"
         }
     },
     {
@@ -76,7 +83,8 @@
             "name": "Skyrim",
             "user": 2,
             "current": true,
-            "multiplayer_capable": false
+            "multiplayer_capable": false,
+            "last_modified": "2011-09-01T13:20:30+03:00"
         }
     },
     {
@@ -86,7 +94,8 @@
             "name": "Animal Crossing",
             "user": 2,
             "current": true,
-            "multiplayer_capable": true
+            "multiplayer_capable": true,
+            "last_modified": "2011-09-01T13:20:30+03:00"
         }
     },
     {
@@ -96,7 +105,8 @@
             "name": "Stardew Valley",
             "user": 2,
             "current": true,
-            "multiplayer_capable": true
+            "multiplayer_capable": true,
+            "last_modified": "2011-09-01T13:20:30+03:00"
         }
     },
     {
@@ -106,7 +116,8 @@
             "name": "Five Nights at Freddy's 2",
             "user": 1,
             "current": false,
-            "multiplayer_capable": false
+            "multiplayer_capable": false,
+            "last_modified": "2011-09-01T13:20:30+03:00"
         }
     },
     {
@@ -116,7 +127,8 @@
             "name": "Civilization VI",
             "user": 2,
             "current": false,
-            "multiplayer_capable": true
+            "multiplayer_capable": true,
+            "last_modified": "2011-09-01T13:20:30+03:00"
         }
     }
 ]
