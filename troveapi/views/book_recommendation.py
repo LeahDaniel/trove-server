@@ -70,9 +70,21 @@ class BookRecommendationView(ViewSet):
         """Put requests to mark all of users received recommendations as read"""
 
         BookRecommendation.objects.filter(
-            recipient=request.auth.user.id).update(read=True)
+            recipient=request.auth.user.id, read=False).update(read=True)
 
         return Response({'message': 'Book Recommendations marked as read'}, status=status.HTTP_204_NO_CONTENT)
+
+    @action(methods=['get'], detail=False)
+    def notify(self, request):
+        """Put requests to mark all of users received recommendations as read"""
+
+        unread = BookRecommendation.objects.filter(
+            recipient=request.auth.user.id, read=False)
+
+        if len(unread) > 0:
+            return Response({'new': True})
+        else:
+            return Response({'new': False})
 
 
 class RecoSerializer(serializers.ModelSerializer):

@@ -31,7 +31,7 @@ class BookView(ViewSet):
             Response -- JSON serialized list of books
         """
         search_text = request.query_params.get('search', None)
-        # current must be passed in as string, not boolean 
+        # current must be passed in as string, not boolean
         # due to diff between True and true in Python
         current_boolean = request.query_params.get('current', None)
         # can be passed as int or string
@@ -111,7 +111,7 @@ class BookSerializer(serializers.ModelSerializer):
     """JSON serializer for book types
     """
     user = UserSerializer(many=False)
-    
+
     class Meta:
         model = Book
         depth = 1
