@@ -20,39 +20,12 @@ class TagView(ViewSet):
         tags = Tag.objects.order_by("tag").filter(user=request.auth.user)
 
         search_text = self.request.query_params.get('q', None)
-        active_text = self.request.query_params.get('active', None)
 
         if search_text:
             tags = Tag.objects.order_by("tag").filter(
                 Q(tag__contains=search_text) &
                 Q(user=request.auth.user)
             )
-        if active_text:
-            if active_text == 'books':
-                tags = Tag.objects.annotate(
-                    count_book=Count('taggedbook')
-                ).filter(count_book__gt=0, user=request.auth.user).order_by("tag")
-
-            elif active_text == 'shows':
-                tags = Tag.objects.annotate(
-                    count_show=Count('taggedshow')
-                ).filter(count_show__gt=0, user=request.auth.user).order_by("tag")
-
-            elif active_text == 'games':
-                tags = Tag.objects.annotate(
-                    count_game=Count('taggedgame')
-                ).filter(count_game__gt=0, user=request.auth.user).order_by("tag")
-
-            elif active_text == 'any':
-                tags = Tag.objects.annotate(
-                    count_game=Count('taggedgame', distinct=True),
-                    count_show=Count('taggedshow', distinct=True),
-                    count_book=Count('taggedbook', distinct=True)
-                ).filter(
-                    Q(count_game__gt=0, user=request.auth.user) |
-                    Q(count_show__gt=0, user=request.auth.user) |
-                    Q(count_book__gt=0, user=request.auth.user)
-                ).order_by("tag")
 
         serializer = TagSerializer(tags, many=True)
 
@@ -136,6 +109,76 @@ class TagView(ViewSet):
             data_list.append(serializer.data)
 
         return Response(data_list, status=status.HTTP_201_CREATED)
+
+    @action(methods=['get'], detail=False)
+    def active_current(self, request):
+        """Only get tags that are active on current media"""
+
+        current_book_tags = Tag.objects.annotate(count_book=Count('taggedbook')
+        ).filter(count_book__gt=0, user=request.auth.user, taggedbook__book__current=True
+        ).order_by("tag")
+
+        current_game_tags = Tag.objects.annotate(count_game=Count('taggedgame')
+        ).filter(count_game__gt=0, user=request.auth.user, taggedgame__game__current=True
+        ).order_by("tag")
+
+        current_show_tags = Tag.objects.annotate(count_show=Count('taggedshow')
+        ).filter(count_show__gt=0, user=request.auth.user, taggedshow__show__current=True
+        ).order_by("tag")
+
+        current_book_serializer = TagSerializer(current_book_tags, many=True)
+        current_game_serializer = TagSerializer(current_game_tags, many=True)
+        current_show_serializer = TagSerializer(current_show_tags, many=True)
+
+        return Response({
+            "currentBookTags": current_book_serializer.data,
+            "currentGameTags": current_game_serializer.data,
+            "currentShowTags": current_show_serializer.data
+        })
+
+    @action(methods=['get'], detail=False)
+    def active_queued(self, request):
+        """Only get tags that are active on queued media"""
+
+        queued_book_tags = Tag.objects.annotate(count_book=Count('taggedbook')
+        ).filter(count_book__gt=0, user=request.auth.user, taggedbook__book__current=False
+        ).order_by("tag")
+
+        queued_game_tags = Tag.objects.annotate(count_game=Count('taggedgame')
+        ).filter(count_game__gt=0, user=request.auth.user, taggedgame__game__current=False
+        ).order_by("tag")
+
+        queued_show_tags = Tag.objects.annotate(count_show=Count('taggedshow')
+        ).filter(count_show__gt=0, user=request.auth.user, taggedshow__show__current=False
+        ).order_by("tag")
+
+        queued_book_serializer = TagSerializer(queued_book_tags, many=True)
+        queued_game_serializer = TagSerializer(queued_game_tags, many=True)
+        queued_show_serializer = TagSerializer(queued_show_tags, many=True)
+
+        return Response({
+            "queuedBookTags": queued_book_serializer.data,
+            "queuedGameTags": queued_game_serializer.data,
+            "queuedShowTags": queued_show_serializer.data
+        })
+
+    @action(methods=['get'], detail=False)
+    def active(self, request):
+        """Only get tags that are active on any media"""
+
+        tags = Tag.objects.annotate(
+            count_game=Count('taggedgame', distinct=True),
+            count_show=Count('taggedshow', distinct=True),
+            count_book=Count('taggedbook', distinct=True)
+        ).filter(
+            Q(count_game__gt=0, user=request.auth.user) |
+            Q(count_show__gt=0, user=request.auth.user) |
+            Q(count_book__gt=0, user=request.auth.user)
+        ).order_by("tag")
+
+        serializer = TagSerializer(tags, many=True)
+
+        return Response(serializer.data)
 
 
 class TagSerializer(serializers.ModelSerializer):
