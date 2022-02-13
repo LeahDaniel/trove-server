@@ -112,7 +112,7 @@ class TagView(ViewSet):
 
     @action(methods=['get'], detail=False)
     def active_current(self, request):
-        """Only get actors back that are currently active on a book"""
+        """Only get tags that are active on current media"""
 
         current_book_tags = Tag.objects.annotate(count_book=Count('taggedbook')
         ).filter(count_book__gt=0, user=request.auth.user, taggedbook__book__current=True
@@ -138,7 +138,7 @@ class TagView(ViewSet):
 
     @action(methods=['get'], detail=False)
     def active_queued(self, request):
-        """Only get actors back that are queuedly active on a book"""
+        """Only get tags that are active on queued media"""
 
         queued_book_tags = Tag.objects.annotate(count_book=Count('taggedbook')
         ).filter(count_book__gt=0, user=request.auth.user, taggedbook__book__current=False
@@ -164,7 +164,7 @@ class TagView(ViewSet):
 
     @action(methods=['get'], detail=False)
     def active(self, request):
-        """Only get actors back that are queuedly active on a book"""
+        """Only get tags that are active on any media"""
 
         tags = Tag.objects.annotate(
             count_game=Count('taggedgame', distinct=True),
