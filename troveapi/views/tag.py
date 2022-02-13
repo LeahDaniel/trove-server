@@ -20,39 +20,12 @@ class TagView(ViewSet):
         tags = Tag.objects.order_by("tag").filter(user=request.auth.user)
 
         search_text = self.request.query_params.get('q', None)
-        active_text = self.request.query_params.get('active', None)
 
         if search_text:
             tags = Tag.objects.order_by("tag").filter(
                 Q(tag__contains=search_text) &
                 Q(user=request.auth.user)
             )
-        if active_text:
-            if active_text == 'books':
-                tags = Tag.objects.annotate(
-                    count_book=Count('taggedbook')
-                ).filter(count_book__gt=0, user=request.auth.user).order_by("tag")
-
-            elif active_text == 'shows':
-                tags = Tag.objects.annotate(
-                    count_show=Count('taggedshow')
-                ).filter(count_show__gt=0, user=request.auth.user).order_by("tag")
-
-            elif active_text == 'games':
-                tags = Tag.objects.annotate(
-                    count_game=Count('taggedgame')
-                ).filter(count_game__gt=0, user=request.auth.user).order_by("tag")
-
-            elif active_text == 'any':
-                tags = Tag.objects.annotate(
-                    count_game=Count('taggedgame', distinct=True),
-                    count_show=Count('taggedshow', distinct=True),
-                    count_book=Count('taggedbook', distinct=True)
-                ).filter(
-                    Q(count_game__gt=0, user=request.auth.user) |
-                    Q(count_show__gt=0, user=request.auth.user) |
-                    Q(count_book__gt=0, user=request.auth.user)
-                ).order_by("tag")
 
         serializer = TagSerializer(tags, many=True)
 
