@@ -1,0 +1,1 @@
+web: gunicorn trove-server.wsgi --log-file -
