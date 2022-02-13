@@ -3,7 +3,9 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers, status
 from troveapi.models import Author
+from django.db.models import Q, Count
 from django.contrib.auth.models import User
+from rest_framework.decorators import action
 
 
 class AuthorView(ViewSet):
@@ -33,6 +35,7 @@ class AuthorView(ViewSet):
             user=request.auth.user).order_by('name')
 
         name_text = self.request.query_params.get('name', None)
+
         if name_text:
             authors = Author.objects.filter(
                 name__iexact=name_text, user=request.auth.user)
@@ -55,6 +58,30 @@ class AuthorView(ViewSet):
         serializer.save(user=user)
 
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+    @action(methods=['get'], detail=False)
+    def active_current(self, request):
+        """Only get actors back that are currently active on a book"""
+
+        authors = Author.objects.annotate(
+            count_book=Count('book_author')
+        ).filter(count_book__gt=0, user=request.auth.user, book_author__current=True)
+
+        serializer = AuthorSerializer(authors, many=True)
+
+        return Response(serializer.data)
+
+    @action(methods=['get'], detail=False)
+    def active_queued(self, request):
+        """Only get actors back that are currently active on a book"""
+
+        authors = Author.objects.annotate(
+            count_book=Count('book_author')
+        ).filter(count_book__gt=0, user=request.auth.user, book_author__current=False)
+
+        serializer = AuthorSerializer(authors, many=True)
+
+        return Response(serializer.data)
 
 
 class AuthorSerializer(serializers.ModelSerializer):
