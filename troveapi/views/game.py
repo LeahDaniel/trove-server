@@ -50,13 +50,11 @@ class GameView(ViewSet):
         if platform_id:
             filter_params &= Q(platforms__id=platform_id)
 
-        games = Game.objects.filter(filter_params)
+        games = Game.objects.filter(filter_params).order_by('-last_modified')
 
         if tag_list:
             for tag_id in tag_list:
                 games = games.filter(tags__id=tag_id)
-                
-        games = games.order_by('-last_modified')
 
         serializer = GameSerializer(games, many=True)
 
