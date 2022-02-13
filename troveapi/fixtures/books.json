@@ -6,7 +6,7 @@
             "name": "1984",
             "user": 2,
             "current": false,
-            "author": 1,
+            "author": 8,
             "last_modified": "2011-09-01T13:20:30+03:00"
         }
     },
@@ -17,7 +17,7 @@
             "name": "It",
             "user": 2,
             "current": false,
-            "author": 3,
+            "author": 9,
             "last_modified": "2011-09-01T13:20:30+03:00"
         }
     },
@@ -28,7 +28,7 @@
             "name": "Lord of the Flies",
             "user": 2,
             "current": false,
-            "author": 4,
+            "author": 10,
             "last_modified": "2011-09-01T13:20:30+03:00"
         }
     },
@@ -39,7 +39,7 @@
             "name": "Frankenstein",
             "user": 2,
             "current": false,
-            "author": 5,
+            "author": 11,
             "last_modified": "2011-09-01T13:20:30+03:00"
         }
     },
@@ -50,7 +50,7 @@
             "name": "The Iliad",
             "user": 2,
             "current": false,
-            "author": 6,
+            "author": 12,
             "last_modified": "2011-09-01T13:20:30+03:00"
         }
     },
@@ -61,7 +61,7 @@
             "name": "Pet Sematary",
             "user": 2,
             "current": false,
-            "author": 3,
+            "author": 9,
             "last_modified": "2011-09-01T13:20:30+03:00"
         }
     }
