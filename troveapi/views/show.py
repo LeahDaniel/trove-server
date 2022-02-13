@@ -46,7 +46,7 @@ class ShowView(ViewSet):
         if streaming_service_id:
             filter_params &= Q(streaming_service__id=streaming_service_id)
 
-        shows = Show.objects.filter(filter_params).order_by('-last_modified')
+        shows = Show.objects.filter(filter_params)
 
         if tag_list:
             for tag_id in tag_list:
