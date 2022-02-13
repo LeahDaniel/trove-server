@@ -1,1 +1,3 @@
-web: gunicorn troveapi.wsgi --log-file -
+web: gunicorn trove-server.wsgi:application --log-file - --log-level debug
+python manage.py collectstatic --noinput
+manage.py migrate
