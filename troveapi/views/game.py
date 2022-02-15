@@ -42,7 +42,7 @@ class GameView(ViewSet):
 
         filter_params = Q(user=request.auth.user)
         if search_text:
-            filter_params &= Q(name__contains=search_text)
+            filter_params &= Q(name__icontains=search_text)
         if current_boolean:
             filter_params &= Q(current=current_boolean)
         if multiplayer_boolean:
