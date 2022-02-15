@@ -23,7 +23,7 @@ class TagView(ViewSet):
 
         if search_text:
             tags = Tag.objects.order_by("tag").filter(
-                Q(tag__contains=search_text) &
+                Q(tag__icontains=search_text) &
                 Q(user=request.auth.user)
             )
 
