@@ -8,4 +8,4 @@ class Show(models.Model):
     current = models.BooleanField()
     last_modified = models.DateTimeField(auto_now=True)
     tags = models.ManyToManyField(
-        "Tag", through="TaggedShow", related_name="showTags")
+        "Tag", through="TaggedShow", related_name="show_tags")

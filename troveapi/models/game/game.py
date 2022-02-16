@@ -11,5 +11,5 @@ class Game(models.Model):
     platforms = models.ManyToManyField(
         "Platform", through="GamePlatform", related_name="platforms")
     tags = models.ManyToManyField(
-        "Tag", through="TaggedGame", related_name="gameTags")
+        "Tag", through="TaggedGame", related_name="game_tags")
 

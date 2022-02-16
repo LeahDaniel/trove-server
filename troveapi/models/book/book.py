@@ -9,4 +9,4 @@ class Book(models.Model):
     current = models.BooleanField()
     last_modified = models.DateTimeField(auto_now=True)
     tags = models.ManyToManyField(
-        "Tag", through="TaggedBook", related_name="bookTags")
+        "Tag", through="TaggedBook", related_name="book_tags")

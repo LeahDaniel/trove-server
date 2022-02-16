@@ -3,7 +3,7 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers, status
 from troveapi.models import Author
-from django.db.models import Q, Count
+from django.db.models import Count
 from django.contrib.auth.models import User
 from rest_framework.decorators import action
 
